@@ -26,5 +26,3 @@ I believe that this project will not only be beneficial for myself but also for 
 - As a user, I want to be able to select a spending category and list all the expenses in that category
 
 
-
-  An example of text with **bold** and *italic* fonts.  
