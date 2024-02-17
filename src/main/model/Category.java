@@ -1,21 +1,61 @@
 package model;
 
-public class Category {
-    private Double budget;
-    private Double amountSpent;
+import java.util.ArrayList;
 
-    public Category(Double budget) {
+public class Category {
+    private String name;
+    private double budget;
+    private double amountSpent;
+    private ArrayList<Expense> expenses;
+
+    public Category(String name, double budget) {
+        this.name = name;
         this.budget = budget;
         amountSpent = 0.0;
+        expenses = new ArrayList<>();
+    }
+
+    public double remainingAmountToSpend() {
+        double remainingAmount = budget - amountSpent;
+        if (remainingAmount < 0) {
+            return 0.0;
+        }
+        return remainingAmount;
+    }
+
+    public String listOfExpenses() {
+        String allExpenses = "";
+        for (Expense e : expenses) {
+            String expenseAmount = String.format("%.2f", e.getAmount()); // get expense to 2 decimal places as string
+            allExpenses += e.getPerson().getName() + ": - $" + expenseAmount + "\n";
+        }
+        return allExpenses;
+    }
+
+    public boolean reachedLimit() {
+        return (amountSpent >= budget);
+    }
+
+    public void addExpense(Expense e) {
+        expenses.add(e);
+        amountSpent += e.getAmount();
     }
 
 
 
-    public Double getBudget() {
+    public String getName() {
+        return name;
+    }
+
+    public double getBudget() {
         return budget;
     }
 
-    public Double getAmountSpent() {
+    public double getAmountSpent() {
         return amountSpent;
+    }
+
+    public ArrayList getExpenses() {
+        return expenses;
     }
 }

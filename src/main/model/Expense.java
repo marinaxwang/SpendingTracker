@@ -2,12 +2,13 @@ package model;
 
 public class Expense {
     private Category category;
-    private String note;
-    private Person person;
+    private double amount;
+    private User person;
 
-    public Expense(Category c, String n, Person p) {
+
+    public Expense(Category c, double a, User p) {
         category = c;
-        note = n;
+        amount = a;
         person = p;
     }
 
@@ -15,11 +16,11 @@ public class Expense {
         return category;
     }
 
-    public String getNote() {
-        return note;
+    public double getAmount() {
+        return amount;
     }
 
-    public Person getPerson() {
+    public User getPerson() {
         return person;
     }
 
