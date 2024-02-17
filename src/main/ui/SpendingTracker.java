@@ -92,10 +92,9 @@ public class SpendingTracker {
     private void addExpense() {
         if (!categories.isEmpty() && !users.isEmpty()) {
             //Category
-            Category category = new Category("A", 100);
             int categoryIndex = 0;
 
-            findCategoryForExpense(category, categoryIndex);
+            Category category = findCategoryForExpense(categoryIndex);
 
             //Expense amount
             System.out.print("Enter the expense amount\n");
@@ -104,10 +103,9 @@ public class SpendingTracker {
                 System.out.print("You exceeded the limit!");
                 //System.out.println(amount - (category.getBudget() - category.getAmountSpent() + amount));
             } else {
-                User user = new User("Marina");
                 int userIndex = 0;
 
-                findUserForExpense(user, userIndex);
+                User user = findUserForExpense(userIndex);
 
                 //create new expense
                 Expense e = new Expense(category, amount, user);
@@ -130,10 +128,10 @@ public class SpendingTracker {
     }
 
 
-    private Category findCategoryForExpense(Category category, int categoryIndex) {
+    private Category findCategoryForExpense(int categoryIndex) {
         System.out.print("Here is a list of current categories, type the category name for this expense\n");
         for (Category c : categories) {
-            System.out.print(c.getName() + "\n");
+            System.out.print("\t" + c.getName() + "\n");
         }
 
         String categoryName = input.next();
@@ -144,11 +142,11 @@ public class SpendingTracker {
                 break;
             }
         }
-        category = categories.get(categoryIndex);
+        Category category = categories.get(categoryIndex);
         return category;
     }
 
-    private User findUserForExpense(User user, int userIndex) {
+    private User findUserForExpense(int userIndex) {
         System.out.print("Enter the person who used this expense\n");
         String userName = input.next();
 
@@ -158,7 +156,7 @@ public class SpendingTracker {
                 break;
             }
         }
-        user = users.get(userIndex);
+        User user = users.get(userIndex);
         return user;
     }
 
@@ -188,7 +186,7 @@ public class SpendingTracker {
         if (!users.isEmpty()) {
             System.out.print("Here is the list of users:\n");
             for (User u : users) {
-                System.out.print(u.getName() + "\n");
+                System.out.print("\t" + u.getName() + "\n");
             }
         } else {
             System.out.print("There is currently no users.\n");
@@ -199,7 +197,7 @@ public class SpendingTracker {
         if (!categories.isEmpty()) {
             System.out.print("Here is a list of your spending categories:\n");
             for (Category c : categories) {
-                System.out.print(c.getName() + "\n");
+                System.out.print("\t" + c.getName() + "\n");
             }
         } else {
             System.out.print("You currently have no spending category.\n");

@@ -55,7 +55,4 @@ public class Category {
         return amountSpent;
     }
 
-    public ArrayList getExpenses() {
-        return expenses;
-    }
 }
