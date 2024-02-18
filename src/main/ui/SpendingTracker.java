@@ -6,21 +6,25 @@ import model.Expense;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+// Spending tracker application
 public class SpendingTracker {
 
     private Scanner input;
     private ArrayList<Category> categories;
 
+    // EFFECTS: runs the tracker application
     public SpendingTracker() {
         runTracker();
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user input
     private void runTracker() {
         boolean keepGoing = true;
         String command = null;
 
-        init();
+        input = new Scanner(System.in);
+        categories = new ArrayList<Category>();
 
         while (keepGoing) {
             displayMenu();
@@ -37,10 +41,6 @@ public class SpendingTracker {
         System.out.println("\nGoodbye!");
     }
 
-    private void init() {
-        input = new Scanner(System.in);
-        categories = new ArrayList<Category>();
-    }
 
 
     // EFFECTS: displays menu of options to user
@@ -67,6 +67,7 @@ public class SpendingTracker {
     }
 
     // MODIFIES: this
+    // EFFECTS: add a spending category with a name and a budget to the list of categories
     private void addCategory() {
         System.out.print("Enter the name of the spending category you wish to add\n");
         String name = input.next();
@@ -80,6 +81,7 @@ public class SpendingTracker {
     }
 
     // MODIFIES: this
+    // EFFECTS: add an expense with an amount to a category, prints the amount spent over budget if valid
     private void addExpense() {
         if (!categories.isEmpty()) {
             //Category
@@ -100,20 +102,20 @@ public class SpendingTracker {
             //add expense to its category's list of expenses
             category.addExpense(e);
 
-            System.out.print("\nAmount Spent: " + category.getAmountSpent());
-            System.out.print("\nBudget: " + category.getBudget());
+            System.out.print("\nExpense added!");
         } else {
             checkEmptyArrays();
         }
     }
 
+    // EFFECTS: tells user to add a spending category first if the list of categories is empty
     private void checkEmptyArrays() {
         if (categories.isEmpty()) {
             System.out.print("Please add a spending category first!\n");
         }
     }
 
-
+    // EFFECTS: finds a category for an expense
     private Category findCategoryForExpense(int categoryIndex) {
         System.out.print("Here is a list of current categories, type the category name for this expense\n");
         for (Category c : categories) {
@@ -132,6 +134,8 @@ public class SpendingTracker {
         return category;
     }
 
+    // EFFECTS: prints the list of spending categories and list the list of expenses
+    //          under the category the user selects
     private void seeListOfCategories() {
         if (!categories.isEmpty()) {
             System.out.print("Here is a list of your spending categories:\n");
@@ -145,13 +149,13 @@ public class SpendingTracker {
             boolean categoryExists = false;
             for (Category c : categories) {
                 if (categoryName.equals(c.getName())) {
-                    System.out.print(c.listOfExpenses() + "\n");
+                    getCategoryReport(c);
                     categoryExists = true;
                     break;
                 }
             }
             if (!categoryExists) {
-                System.out.print("THe category you entered does not exist. \n");
+                System.out.print("The category you entered does not exist. \n");
             }
 
 
@@ -159,4 +163,14 @@ public class SpendingTracker {
             System.out.print("You currently have no spending category.\n");
         }
     }
+
+    // EFFECTS: prints the budget, total amount spent, and the amount spend over the budget if valid
+    private void getCategoryReport(Category c) {
+        System.out.print(c.listOfExpenses());
+        System.out.print("\nBudget: " + c.getBudget());
+        System.out.print("\nTotal Amount Spent: " + c.getAmountSpent() + "\n");
+        System.out.print("\nYou spent " + (c.getAmountSpent() - c.getBudget()) + " more than the budget.\n");
+    }
 }
+
+

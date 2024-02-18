@@ -18,7 +18,8 @@ feel the same way about their finances.
 **Main Features:**
 - Set budget for spending categories
 - Track expenses and income in categories
-- Track shared budget with others
+- Add different spending categories
+- See a list of expenses in a category
 
 ## User Stories
 - As a user, I want to be able to add a spending category to a list of spending categories
