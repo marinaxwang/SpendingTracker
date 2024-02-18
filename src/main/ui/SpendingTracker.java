@@ -2,7 +2,6 @@ package ui;
 
 import model.Category;
 import model.Expense;
-import model.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,7 +11,6 @@ public class SpendingTracker {
 
     private Scanner input;
     private ArrayList<Category> categories;
-    private ArrayList<User> users;
 
     public SpendingTracker() {
         runTracker();
@@ -42,7 +40,6 @@ public class SpendingTracker {
     private void init() {
         input = new Scanner(System.in);
         categories = new ArrayList<Category>();
-        users = new ArrayList<User>();
     }
 
 
@@ -51,9 +48,7 @@ public class SpendingTracker {
         System.out.println("\nSelect from:");
         System.out.println("\ta -> add a spending category");
         System.out.println("\tb -> add an expense");
-        System.out.println("\tc -> add an user");
-        System.out.println("\td -> see list of users");
-        System.out.println("\te -> see list of spending categories");
+        System.out.println("\tc -> see list of spending categories");
         System.out.println("\tq -> quit");
     }
 
@@ -65,10 +60,6 @@ public class SpendingTracker {
         } else if (command.equals("b")) {
             addExpense();
         } else if (command.equals("c")) {
-            addUser();
-        } else if (command.equals("d")) {
-            seeListOfUsers();
-        } else if (command.equals("e")) {
             seeListOfCategories();
         } else {
             System.out.println("Selection not valid...");
@@ -90,7 +81,7 @@ public class SpendingTracker {
 
     // MODIFIES: this
     private void addExpense() {
-        if (!categories.isEmpty() && !users.isEmpty()) {
+        if (!categories.isEmpty()) {
             //Category
             int categoryIndex = 0;
 
@@ -100,25 +91,17 @@ public class SpendingTracker {
             System.out.print("Enter the expense amount\n");
             double amount = input.nextDouble();
             category.addExpenseofTypeDouble(amount);
-            if (amount > category.remainingAmountToSpend()) {
-                System.out.print("You exceeded the limit!");
-                //System.out.println(amount - (category.getBudget() - category.getAmountSpent() + amount));
-            } else {
-                int userIndex = 0;
-
-                User user = findUserForExpense(userIndex);
-
-                //create new expense
-                Expense e = new Expense(category, amount, user);
-
-                //add expense to its category's list of expenses
-                category.addExpense(e);
-
-
-                System.out.print("amount: " + category.getAmountSpent());//////////////////
-                System.out.print("category name: " + category.getName());//////////////////
-                System.out.print("category budget: " + category.getBudget());//////////////////
+            if (category.getAmountSpent() > category.getBudget()) {
+                System.out.print("You exceeded the limit by " + (category.getAmountSpent() - category.getBudget()));
             }
+            //create new expense
+            Expense e = new Expense(category, amount);
+
+            //add expense to its category's list of expenses
+            category.addExpense(e);
+
+            System.out.print("\nAmount Spent: " + category.getAmountSpent());
+            System.out.print("\nBudget: " + category.getBudget());
         } else {
             checkEmptyArrays();
         }
@@ -127,8 +110,6 @@ public class SpendingTracker {
     private void checkEmptyArrays() {
         if (categories.isEmpty()) {
             System.out.print("Please add a spending category first!\n");
-        } else if (users.isEmpty()) {
-            System.out.print("Please add a user first!\n");
         }
     }
 
@@ -149,53 +130,6 @@ public class SpendingTracker {
         }
         Category category = categories.get(categoryIndex);
         return category;
-    }
-
-    private User findUserForExpense(int userIndex) {
-        System.out.print("Enter the person who used this expense\n");
-        String userName = input.next();
-
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getName().equals(userName)) {
-                userIndex = i;
-                break;
-            }
-        }
-        User user = users.get(userIndex);
-        return user;
-    }
-
-    private void addUser() {
-        System.out.print("Enter the name of the user you wish to add\n");
-        String name = input.next();
-
-        boolean userAlreadyRegistered = false;
-        for (User u : users) {
-            if (u.getName().equals(name)) {
-                userAlreadyRegistered = true;
-                break;
-            }
-        }
-
-        if (userAlreadyRegistered) {
-            System.out.print("This user is already registered.\n");
-        } else {
-            User newUser = new User(name);
-            users.add(newUser);
-            System.out.print(name + " added successfully!\n");
-        }
-
-    }
-
-    private void seeListOfUsers() {
-        if (!users.isEmpty()) {
-            System.out.print("Here is the list of users:\n");
-            for (User u : users) {
-                System.out.print("\t" + u.getName() + "\n");
-            }
-        } else {
-            System.out.print("There is currently no users.\n");
-        }
     }
 
     private void seeListOfCategories() {

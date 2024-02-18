@@ -3,13 +3,11 @@ package model;
 public class Expense {
     private Category category;
     private double amount;
-    private User person;
 
 
-    public Expense(Category c, double a, User p) {
+    public Expense(Category c, double a) {
         category = c;
         amount = a;
-        person = p;
     }
 
     public Category getCategory() {
@@ -20,8 +18,5 @@ public class Expense {
         return amount;
     }
 
-    public User getPerson() {
-        return person;
-    }
 
 }

@@ -30,7 +30,7 @@ public class Category {
         }
         for (Expense e : expenses) {
             String expenseAmount = String.format("%.2f", e.getAmount()); // get expense to 2 decimal places as string
-            allExpenses += e.getPerson().getName() + ": - $" + expenseAmount + "\n";
+            allExpenses += ": - $" + expenseAmount + "\n";
         }
         return allExpenses;
     }
