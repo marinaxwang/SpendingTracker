@@ -99,6 +99,7 @@ public class SpendingTracker {
             //Expense amount
             System.out.print("Enter the expense amount\n");
             double amount = input.nextDouble();
+            category.addExpenseofTypeDouble(amount);
             if (amount > category.remainingAmountToSpend()) {
                 System.out.print("You exceeded the limit!");
                 //System.out.println(amount - (category.getBudget() - category.getAmountSpent() + amount));
@@ -112,7 +113,11 @@ public class SpendingTracker {
 
                 //add expense to its category's list of expenses
                 category.addExpense(e);
-                System.out.print("amount: " + category.getAmountSpent());
+
+
+                System.out.print("amount: " + category.getAmountSpent());//////////////////
+                System.out.print("category name: " + category.getName());//////////////////
+                System.out.print("category budget: " + category.getBudget());//////////////////
             }
         } else {
             checkEmptyArrays();
@@ -199,6 +204,23 @@ public class SpendingTracker {
             for (Category c : categories) {
                 System.out.print("\t" + c.getName() + "\n");
             }
+
+            System.out.print("Enter name of the category to see its list of expenses: \n");
+            String categoryName = input.next();
+
+            boolean categoryExists = false;
+            for (Category c : categories) {
+                if (categoryName.equals(c.getName())) {
+                    System.out.print(c.listOfExpenses() + "\n");
+                    categoryExists = true;
+                    break;
+                }
+            }
+            if (!categoryExists) {
+                System.out.print("THe category you entered does not exist. \n");
+            }
+
+
         } else {
             System.out.print("You currently have no spending category.\n");
         }

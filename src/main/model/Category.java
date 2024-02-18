@@ -25,6 +25,9 @@ public class Category {
 
     public String listOfExpenses() {
         String allExpenses = "";
+        if (expenses.isEmpty()) {
+            return "There is no expenses under this category.";
+        }
         for (Expense e : expenses) {
             String expenseAmount = String.format("%.2f", e.getAmount()); // get expense to 2 decimal places as string
             allExpenses += e.getPerson().getName() + ": - $" + expenseAmount + "\n";
@@ -38,10 +41,12 @@ public class Category {
 
     public void addExpense(Expense e) {
         expenses.add(e);
-        amountSpent += e.getAmount();
+        //amountSpent += e.getAmount();
     }
 
-
+    public void addExpenseofTypeDouble(double e) {
+        amountSpent += e;
+    }
 
     public String getName() {
         return name;
