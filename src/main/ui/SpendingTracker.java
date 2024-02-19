@@ -24,7 +24,7 @@ public class SpendingTracker {
         String command = null;
 
         input = new Scanner(System.in);
-        categories = new ArrayList<Category>();
+        categories = new ArrayList<>();
 
         while (keepGoing) {
             displayMenu();
@@ -92,7 +92,7 @@ public class SpendingTracker {
             //Expense amount
             System.out.print("Enter the expense amount\n");
             double amount = input.nextDouble();
-            category.addExpenseofTypeDouble(amount);
+            category.addExpenseOfTypeDouble(amount);
             if (category.getAmountSpent() > category.getBudget()) {
                 System.out.print("You exceeded the limit by " + (category.getAmountSpent() - category.getBudget()));
             }
@@ -171,6 +171,11 @@ public class SpendingTracker {
         System.out.print("\nTotal Amount Spent: " + c.getAmountSpent() + "\n");
         System.out.print("\nYou spent " + (c.getAmountSpent() - c.getBudget()) + " more than the budget.\n");
     }
+
+    public ArrayList getCategories() {
+        return categories;
+    }
+
 }
 
 

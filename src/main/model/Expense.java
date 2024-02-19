@@ -15,4 +15,8 @@ public class Expense {
         return amount;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
 }

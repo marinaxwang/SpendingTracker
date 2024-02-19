@@ -10,7 +10,7 @@ public class Category {
     private ArrayList<Expense> expenses;
 
     // EFFECTS: construct a category with name set to parameter name, budget set to parameter budget
-    //          amount spent set to 0, and a empty list of expenses
+    //          amount spent set to 0, and an empty list of expenses
     public Category(String name, double budget) {
         this.name = name;
         this.budget = budget;
@@ -41,7 +41,7 @@ public class Category {
     // REQUIRES: e > 0
     // MODIFIES: this
     // EFFECTS: add the amount of parameter e to the amount spent in this category
-    public void addExpenseofTypeDouble(double e) {
+    public void addExpenseOfTypeDouble(double e) {
         amountSpent += e;
     }
 
@@ -55,6 +55,10 @@ public class Category {
 
     public double getAmountSpent() {
         return amountSpent;
+    }
+
+    public ArrayList getExpenses() {
+        return expenses;
     }
 
 }
