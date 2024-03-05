@@ -20,6 +20,7 @@ feel the same way about their finances.
 - Track expenses and income in categories
 - Add different spending categories
 - See a list of expenses in a category
+- Save your changes made to spending categories and expenses
 
 ## User Stories
 - As a user, I want to be able to add a spending category to a list of spending categories
@@ -27,5 +28,7 @@ feel the same way about their finances.
 - As a user, I want to be able to add an expense, select a category, add a note,
 and select a person who spent that amount to a spending category
 - As a user, I want to be able to select a spending category and list all the expenses in that category
+- As a user, I want to be able to save the changes I made to spending categories to file.
+- As a user, when I start the application, I want to be given the option to load my spending categories from file.
 
 
