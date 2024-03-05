@@ -5,6 +5,7 @@ import persistence.Writable;
 
 // Represents an expense having a category and an amount
 public class Expense implements Writable {
+
     private String name;
     private double amount;
 
@@ -19,6 +20,7 @@ public class Expense implements Writable {
     public String getName() {
         return name;
     }
+
     public double getAmount() {
         return amount;
     }

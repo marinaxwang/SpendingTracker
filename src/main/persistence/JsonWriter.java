@@ -1,8 +1,7 @@
 package persistence;
-import model.Category;
+
 import model.ListOfCategories;
 import org.json.JSONObject;
-
 
 import java.io.*;
 
