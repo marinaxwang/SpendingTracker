@@ -33,6 +33,17 @@ public class ListOfCategories implements Writable {
         category.add(c);
     }
 
+    // EFFECTS: returns an unmodifiable list of expenses in this category
+    public List<Category> getCategories() {
+        return Collections.unmodifiableList(category);
+    }
+
+    // EFFECTS: returns number of expenses in this category
+    public int numExpenses() {
+        return category.size();
+    }
+
+
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

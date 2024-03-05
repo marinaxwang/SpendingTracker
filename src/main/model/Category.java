@@ -49,15 +49,6 @@ public class Category implements Writable {
     }
 
 
-    // EFFECTS: returns an unmodifiable list of expenses in this category
-    public List<Expense> getExpenses() {
-        return Collections.unmodifiableList(expenses);
-    }
-
-    // EFFECTS: returns number of expenses in this category
-    public int numExpenses() {
-        return expenses.size();
-    }
 
     // REQUIRES: e > 0
     // MODIFIES: this
@@ -95,9 +86,9 @@ public class Category implements Writable {
     }
 
 
-    //public List getExpenses() {
-    //    return expenses;
-    //}
+    public List getExpenses() {
+        return expenses;
+    }
 
 
 }

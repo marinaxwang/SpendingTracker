@@ -1,0 +1,13 @@
+{
+    "name": "Marina's categories",
+    "category": [
+        {
+            "thingies": [],
+            "name": "food"
+        },
+        {
+            "thingies": [],
+            "name": "tax"
+        }
+    ]
+}

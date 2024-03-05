@@ -1,0 +1,13 @@
+{
+  "expenses": [
+    {
+      "name": "food",
+      "amount": 20
+    },
+    {
+      "name": "tax",
+      "amount": 30
+    }
+  ],
+  "name": "Marina's categories"
+}
