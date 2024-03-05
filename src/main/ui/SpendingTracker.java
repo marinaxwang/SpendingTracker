@@ -2,18 +2,31 @@ package ui;
 
 import model.Category;
 import model.Expense;
+import model.ListOfCategories;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 // Spending tracker application
 public class SpendingTracker {
-
+    private static final String JSON_STORE = "./data/workroom.json";
     private Scanner input;
+    private ListOfCategories loc;
     private ArrayList<Category> categories;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the tracker application
-    public SpendingTracker() {
+    public SpendingTracker() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        loc = new ListOfCategories("Marina's Spending Tracker");
+        categories = loc.getListOfCategories();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runTracker();
     }
 
@@ -24,7 +37,6 @@ public class SpendingTracker {
         String command = null;
 
         input = new Scanner(System.in);
-        categories = new ArrayList<>();
 
         while (keepGoing) {
             displayMenu();
@@ -49,6 +61,8 @@ public class SpendingTracker {
         System.out.println("\ta -> add a spending category");
         System.out.println("\tb -> add an expense");
         System.out.println("\tc -> see list of spending categories");
+        System.out.println("\ts -> save to file");
+        System.out.println("\tl -> load categories from file");
         System.out.println("\tq -> quit");
     }
 
@@ -61,6 +75,10 @@ public class SpendingTracker {
             addExpense();
         } else if (command.equals("c")) {
             seeListOfCategories();
+        } else if (command.equals("s")) {
+            saveCategories();
+        } else if (command.equals("l")) {
+            loadCategories();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -89,6 +107,9 @@ public class SpendingTracker {
 
             Category category = findCategoryForExpense(categoryIndex);
 
+            System.out.println("Please enter the name of your expense\n");
+            String name = input.next();
+
             //Expense amount
             System.out.print("Enter the expense amount\n");
             double amount = input.nextDouble();
@@ -97,7 +118,7 @@ public class SpendingTracker {
                 System.out.print("You exceeded the limit by " + (category.getAmountSpent() - category.getBudget()));
             }
             //create new expense
-            Expense e = new Expense(category, amount);
+            Expense e = new Expense(name, amount);
 
             //add expense to its category's list of expenses
             category.addExpense(e);
@@ -106,7 +127,9 @@ public class SpendingTracker {
         } else {
             checkEmptyArrays();
         }
+
     }
+
 
     // EFFECTS: tells user to add a spending category first if the list of categories is empty
     private void checkEmptyArrays() {
@@ -172,8 +195,28 @@ public class SpendingTracker {
         System.out.print("\nYou spent " + (c.getAmountSpent() - c.getBudget()) + " more than the budget.\n");
     }
 
-    public ArrayList getCategories() {
-        return categories;
+
+    // EFFECTS: saves the workroom to file
+    private void saveCategories() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(loc);
+            jsonWriter.close();
+            System.out.println("Saved " + loc.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads loc from file
+    private void loadCategories() {
+        try {
+            loc = jsonReader.read();
+            System.out.println("Loaded " + loc.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 }

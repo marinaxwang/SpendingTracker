@@ -16,10 +16,10 @@ class CategoryTest {
     @BeforeEach
     void runBefore() {
         c = new Category("Food", 100);
-        e1 = new Expense(c, 20);
-        e2 = new Expense(c, 30);
-        e3 = new Expense(c, 50);
-        e4 = new Expense(c, 40);
+        e1 = new Expense("lunch", 20);
+        e2 = new Expense("dinner", 30);
+        e3 = new Expense("snack", 50);
+        e4 = new Expense("movie", 40);
     }
 
     @Test

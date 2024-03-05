@@ -8,17 +8,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ExpenseTest {
     private Expense e;
-    private Category c1;
 
     @BeforeEach
     void runBefore() {
-        c1 = new Category("Food", 100);
-        e = new Expense(c1, 20);
+        e = new Expense("lunch", 20);
     }
 
     @Test
     void testConstructor() {
-        assertEquals(c1, e.getCategory());
+        assertEquals("lunch", e.getName());
         assertEquals(20, e.getAmount());
     }
 }

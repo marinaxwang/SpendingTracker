@@ -17,13 +17,13 @@ public class SpendingTrackerTest {
     private Expense e4;
 
     void runBefore() {
-        tracker = new SpendingTracker();
+        //tracker = new SpendingTracker();
         c1 = new Category("Food", 100);
         c2 = new Category("Play", 150);
-        e1 = new Expense(c1, 20);
-        e2 = new Expense(c1, 30);
-        e3 = new Expense(c1, 50);
-        e4 = new Expense(c1, 40);
+        e1 = new Expense("lunch", 20);
+        e2 = new Expense("dinner", 30);
+        e3 = new Expense("snack", 50);
+        e4 = new Expense("movie", 40);
     }
 
     @Test
