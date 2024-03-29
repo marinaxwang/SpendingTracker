@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 // Spending tracker application
-public class SpendingTracker {
+public class RunConsole {
     private static final String JSON_STORE = "./data/workroom.json";
     private Scanner input;
     private ListOfCategories loc;
@@ -20,33 +20,68 @@ public class SpendingTracker {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    private AddExpensePanel expensePanel;
-    private AddMenuPanel menuPanel;
-
-    public SpendingTracker() {
+    // EFFECTS: runs the tracker application
+    public RunConsole() throws FileNotFoundException {
         input = new Scanner(System.in);
-        loc = new ListOfCategories("Spending Tracker");
+        loc = new ListOfCategories("Marina's Spending Tracker");
         categories = loc.getListOfCategories();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-
+        runTracker();
     }
 
-    public void setExpensePanel(AddExpensePanel p) {
-        expensePanel = p;
+    // MODIFIES: this
+    // EFFECTS: processes user input
+    private void runTracker() {
+        boolean keepGoing = true;
+        String command = null;
+
+        input = new Scanner(System.in);
+
+        while (keepGoing) {
+            displayMenu();
+            command = input.next();
+            command = command.toLowerCase();
+
+            if (command.equals("q")) {
+                keepGoing = false;
+            } else {
+                processCommand(command);
+            }
+        }
+
+        System.out.println("\nGoodbye!");
     }
 
-    public void setMenuPanel(AddMenuPanel p) {
-        menuPanel = p;
+
+
+    // EFFECTS: displays menu of options to user
+    private void displayMenu() {
+        System.out.println("\nSelect from:");
+        System.out.println("\ta -> add a spending category");
+        System.out.println("\tb -> add an expense");
+        System.out.println("\tc -> see list of spending categories");
+        System.out.println("\ts -> save to file");
+        System.out.println("\tl -> load categories from file");
+        System.out.println("\tq -> quit");
     }
 
-
-    //MODIFIES: this
-    //EFFECTS: quit
-    public void quitAction() {
-        /*JOptionPane popup = new JOptionPane();
-        popup.showMessageDialog(frame, new JLabel(new ImageIcon("./data/goodbye.jpg")));
-        frame.dispose();*/
+    // MODIFIES: this
+    // EFFECTS: processes user command
+    private void processCommand(String command) {
+        if (command.equals("a")) {
+            addCategory();
+        } else if (command.equals("b")) {
+            addExpense();
+        } else if (command.equals("c")) {
+            seeListOfCategories();
+        } else if (command.equals("s")) {
+            saveCategories();
+        } else if (command.equals("l")) {
+            loadCategories();
+        } else {
+            System.out.println("Selection not valid...");
+        }
     }
 
     // MODIFIES: this
@@ -162,7 +197,7 @@ public class SpendingTracker {
 
 
     // EFFECTS: saves the workroom to file
-    public void saveCategories() {
+    private void saveCategories() {
         try {
             jsonWriter.open();
             jsonWriter.write(loc);

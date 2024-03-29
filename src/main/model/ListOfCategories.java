@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -61,5 +62,13 @@ public class ListOfCategories implements Writable {
         }
 
         return jsonArray;
+    }
+
+    public StringBuilder buildMessage(StringBuilder message) {
+        StringBuilder thisMessage = message;
+        for (Category c : category) {
+            message.append(c).append("\n");
+        }
+        return thisMessage;
     }
 }

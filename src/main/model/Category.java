@@ -10,6 +10,7 @@ import java.util.List;
 
 // Represents a spending category having a name, a budget, an amount spent, and a list of expenses
 public class Category implements Writable {
+
     private String name;
     private double budget;
     private double amountSpent;
