@@ -183,7 +183,7 @@ public class SpendingTracker extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: loads loc from file
-    private void loadCategories() {
+    public void loadCategories() {
         try {
             loc = jsonReader.read();
             System.out.println("Loaded " + loc.getName() + " from " + JSON_STORE);

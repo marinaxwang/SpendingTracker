@@ -11,26 +11,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddCategory implements ActionListener {
+public class AddCategory extends JPanel implements ActionListener {
 
-    private JFrame frame;
-    private JPanel panel;
     private ListOfCategories loc;
     private JTable table;
-    private SpendingTracker spendingTracker;
+    private SpendingTracker st;
     private JButton button;
-    private JScrollPane scrollPane;
-    private Object[] object = {"", "", ""};
-    private final String[] columnNames = {"Name", "Budget", "Amount"};
+    private Object[] object = {"", ""};
+    private final String[] columnNames = {"Name", "Amount"};
     private DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
 
     //Constructor of Add Account
-    public AddCategory(ListOfCategories loc, SpendingTracker spendingTracker) {
-        frame = new JFrame();
+    public AddCategory(SpendingTracker st) {
         panel = new JPanel();
         this.loc = loc;
-        this.spendingTracker = spendingTracker;
+        this.st = st;
         setupButton();
         setupTable();
         setupPanel();
@@ -74,9 +70,9 @@ public class AddCategory implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String name = String.valueOf(table.getValueAt(0, 0));
-        double budget = Double.parseDouble(String.valueOf(table.getValueAt(0, 1)));
+        double amount = Double.parseDouble(String.valueOf(table.getValueAt(0, 1)));
 
-        Category c = new Category(name, budget);
+        Expense c = new Expense(name, amount);
 
         //spendingTracker.removeTable();
         loc.addCategory(c);

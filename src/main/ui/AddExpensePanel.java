@@ -27,13 +27,14 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
     private static final String remove = "Remove";
     private JButton removeButton;
     private JTextField expenseName;
+    private JTextField amountName;
 
     private Object[] object = {"", "", ""};
     private final String[] columnNames = {"Name", "Budget", "Amount"};
     private DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
     private static final int WIDTH = 400;
-    private static final int HEIGHT = 200;
+    private static final int HEIGHT = 250;
 
     public AddExpensePanel(SpendingTracker st) {
         super(new BorderLayout());
@@ -41,9 +42,6 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
         listModel = new DefaultListModel();
-        listModel.addElement("Jane Doe");
-        listModel.addElement("John Smith");
-        listModel.addElement("Kathy Green");
 
         //Create the list and put it in a scroll pane.
         list = new JList(listModel);
@@ -63,13 +61,17 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
         removeButton.setActionCommand(remove);
         removeButton.addActionListener(new FireListener());
 
-        expenseName = new JTextField(10);
-        expenseName.addActionListener(hireListener);
-        expenseName.getDocument().addDocumentListener(hireListener);
-        String name = listModel.getElementAt(
-                list.getSelectedIndex()).toString();
+
+        createTextFields(hireListener);
 
         //Create a panel that uses BoxLayout.
+        JPanel buttonPane = createPanel(addButton);
+
+        add(listScrollPane, BorderLayout.CENTER);
+        add(buttonPane, BorderLayout.PAGE_END);
+    }
+
+    public JPanel createPanel(JButton addButton) {
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new BoxLayout(buttonPane,
                 BoxLayout.LINE_AXIS));
@@ -78,12 +80,22 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
         buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
         buttonPane.add(Box.createHorizontalStrut(5));
         buttonPane.add(expenseName);
+        buttonPane.add(amountName);
         buttonPane.add(addButton);
         buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-
-        add(listScrollPane, BorderLayout.CENTER);
-        add(buttonPane, BorderLayout.PAGE_END);
+        return buttonPane;
     }
+
+    public void createTextFields(HireListener hireListener) {
+        expenseName = new JTextField(5);
+        expenseName.addActionListener(hireListener);
+        expenseName.getDocument().addDocumentListener(hireListener);
+
+        amountName = new JTextField(5);
+        amountName.addActionListener(hireListener);
+        amountName.getDocument().addDocumentListener(hireListener);
+    }
+
 
     class FireListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
@@ -122,12 +134,14 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
         //Required by ActionListener.
         public void actionPerformed(ActionEvent e) {
             String name = expenseName.getText();
-
-            //User didn't type in a unique name...
-            if (name.equals("") || alreadyInList(name)) {
+            String amount = amountName.getText();
+            //User didn't type in anything
+            if (name.equals("") || amount.equals("")) {
                 Toolkit.getDefaultToolkit().beep();
                 expenseName.requestFocusInWindow();
                 expenseName.selectAll();
+                amountName.requestFocusInWindow();
+                amountName.selectAll();
                 return;
             }
 
@@ -138,13 +152,15 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
                 index++;
             }
 
-            listModel.insertElementAt(expenseName.getText(), index);
+            listModel.insertElementAt(expenseName.getText() + " $" + amountName.getText(), index);
             //If we just wanted to add to the end, we'd do this:
             //listModel.addElement(employeeName.getText());
 
             //Reset the text field.
             expenseName.requestFocusInWindow();
             expenseName.setText("");
+            amountName.requestFocusInWindow();
+            amountName.setText("");
 
             //Select the new item and make it visible.
             list.setSelectedIndex(index);

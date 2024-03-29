@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class QuitButton  implements ActionListener {
+public class QuitButton implements ActionListener {
     private SpendingTracker st;
     private JButton quit;
 
