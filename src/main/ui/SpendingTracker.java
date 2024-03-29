@@ -6,13 +6,15 @@ import model.ListOfCategories;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 // Spending tracker application
-public class SpendingTracker {
+public class SpendingTracker extends JFrame {
     private static final String JSON_STORE = "./data/workroom.json";
     private Scanner input;
     private ListOfCategories loc;
@@ -22,6 +24,9 @@ public class SpendingTracker {
 
     private AddExpensePanel expensePanel;
     private AddMenuPanel menuPanel;
+
+    private JFrame frame;
+    private JOptionPane popup = new JOptionPane();
 
     public SpendingTracker() {
         input = new Scanner(System.in);
@@ -44,10 +49,13 @@ public class SpendingTracker {
     //MODIFIES: this
     //EFFECTS: quit
     public void quitAction() {
-        /*JOptionPane popup = new JOptionPane();
+        JOptionPane popup = new JOptionPane();
         popup.showMessageDialog(frame, new JLabel(new ImageIcon("./data/goodbye.jpg")));
-        frame.dispose();*/
+        frame.dispose();
     }
+
+
+
 
     // MODIFIES: this
     // EFFECTS: add a spending category with a name and a budget to the list of categories
