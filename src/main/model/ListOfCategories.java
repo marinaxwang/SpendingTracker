@@ -64,11 +64,4 @@ public class ListOfCategories implements Writable {
         return jsonArray;
     }
 
-    public StringBuilder buildMessage(StringBuilder message) {
-        StringBuilder thisMessage = message;
-        for (Category c : category) {
-            message.append(c).append("\n");
-        }
-        return thisMessage;
-    }
 }

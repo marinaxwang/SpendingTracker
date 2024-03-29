@@ -29,10 +29,17 @@ public class ListOfCategoriesTest {
 
     @Test
     void testGetListOfCategoriesNotEmpty() {
+        ListOfCategories test = new ListOfCategories("Marina's Categories");
+        assertEquals(0, loc.getCategories().size());
         locTest.addCategory(c1);
         locTest.addCategory(c2);
+
         loc.addCategory(c1);
         loc.addCategory(c2);
         assertEquals(locTest.getListOfCategories(), loc.getListOfCategories());
+
+        test.addCategory(c1);
+        test.addCategory(c2);
+        assertEquals(2, loc.getCategories().size());
     }
 }
