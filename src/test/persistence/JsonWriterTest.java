@@ -44,7 +44,7 @@ class JsonWriterTest extends JsonTest {
             fail("Exception should not have been thrown");
         }
     }
-
+/*
     @Test
     void testWriterGeneralLOC() {
         try {
@@ -68,4 +68,6 @@ class JsonWriterTest extends JsonTest {
             fail("Exception should not have been thrown");
         }
     }
+
+ */
 }

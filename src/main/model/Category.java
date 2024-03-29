@@ -70,12 +70,12 @@ public class Category implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("thingies", thingiesToJson());
+        json.put("amount", expensesToJson());
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
-    private JSONArray thingiesToJson() {
+    // EFFECTS: returns expenses in this category as a JSON array
+    private JSONArray expensesToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (Expense e : expenses) {

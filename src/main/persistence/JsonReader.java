@@ -51,7 +51,7 @@ public class JsonReader {
     // MODIFIES: c
     // EFFECTS: parses category from JSON object and adds them to list of category
     private void addCategories(ListOfCategories c, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("expenses");
+        JSONArray jsonArray = jsonObject.getJSONArray("category");
         for (Object json : jsonArray) {
             JSONObject nextExpense = (JSONObject) json;
             addCategory(c, nextExpense);

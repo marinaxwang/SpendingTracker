@@ -2,11 +2,11 @@
     "name": "Marina's categories",
     "category": [
         {
-            "thingies": [],
+            "amount": [],
             "name": "food"
         },
         {
-            "thingies": [],
+            "amount": [],
             "name": "tax"
         }
     ]
