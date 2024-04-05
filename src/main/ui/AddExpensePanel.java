@@ -1,6 +1,7 @@
 package ui;
 
 import ui.components.AddExpenseButton;
+import ui.components.RemoveExpenseButton;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -69,6 +70,7 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
 
         add(listScrollPane, BorderLayout.CENTER);
         add(buttonPane, BorderLayout.PAGE_END);
+        this.st = st;
     }
 
     public JPanel createPanel(JButton addButton) {
@@ -114,11 +116,14 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
                 if (index == listModel.getSize()) {
                     //removed item in last position
                     index--;
+                    st.removeCategory(index);
                 }
 
                 list.setSelectedIndex(index);
                 list.ensureIndexIsVisible(index);
             }
+
+
         }
     }
 

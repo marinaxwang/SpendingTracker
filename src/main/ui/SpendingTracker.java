@@ -71,6 +71,10 @@ public class SpendingTracker extends JFrame {
 
     }
 
+    public void removeCategory(int index) {
+        categories.remove(index);
+    }
+
     // MODIFIES: this
     // EFFECTS: add an expense with an amount to a category, prints the amount spent over budget if valid
     private void addExpense() {

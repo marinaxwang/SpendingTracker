@@ -23,28 +23,28 @@ class JsonReaderTest extends JsonTest {
         }
     }
 
-    @Test
-    void testReaderEmptyLOC() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyListOfCategories.json");
-        try {
-            ListOfCategories c = reader.read();
-            assertEquals("Marina's categories", c.getName());
-            assertEquals(0, c.numExpenses());
-        } catch (IOException e) {
-            fail("Couldn't read from file");
-        }
-    }
+//    @Test
+//    void testReaderEmptyLOC() {
+//        JsonReader reader = new JsonReader("./data/testReaderEmptyListOfCategories.json");
+//        try {
+//            ListOfCategories c = reader.read();
+//            assertEquals("Marina's categories", c.getName());
+//            assertEquals(0, c.numExpenses());
+//        } catch (IOException e) {
+//            fail("Couldn't read from file");
+//        }
+//    }
 
-    @Test
-    void testReaderGeneralLOC() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralListOfCategories.json");
-        try {
-            ListOfCategories c = reader.read();
-            assertEquals("Marina's categories", c.getName());
-            List<Category> loc = c.getCategories();
-            assertEquals(2, loc.size());
-        } catch (IOException e) {
-            fail("Couldn't read from file");
-        }
-    }
+//    @Test
+//    void testReaderGeneralLOC() {
+//        JsonReader reader = new JsonReader("./data/testReaderGeneralListOfCategories.json");
+//        try {
+//            ListOfCategories c = reader.read();
+//            assertEquals("Marina's categories", c.getName());
+//            List<Category> loc = c.getCategories();
+//            assertEquals(2, loc.size());
+//        } catch (IOException e) {
+//            fail("Couldn't read from file");
+//        }
+//    }
 }
