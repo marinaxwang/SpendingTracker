@@ -136,10 +136,8 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
 
         //Required by ActionListener.
         public void actionPerformed(ActionEvent e) {
-            String name = expenseName.getText();
-            String amount = amountName.getText();
             //User didn't type in anything
-            if (name.equals("") || amount.equals("")) {
+            if (expenseName.getText().equals("") || amountName.getText().equals("")) {
                 Toolkit.getDefaultToolkit().beep();
                 expenseName.requestFocusInWindow();
                 expenseName.selectAll();
