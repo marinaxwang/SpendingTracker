@@ -107,9 +107,7 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
             int index = list.getSelectedIndex();
             listModel.remove(index);
 
-            int size = listModel.getSize();
-
-            if (size == 0) { //Nobody's left, disable firing.
+            if (listModel.getSize() == 0) { //Nobody's left, disable firing.
                 removeButton.setEnabled(false);
 
             } else { //Select an index.
