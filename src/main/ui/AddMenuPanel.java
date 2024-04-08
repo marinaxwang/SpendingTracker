@@ -8,6 +8,7 @@ import ui.components.SaveButton;
 import javax.swing.*;
 import java.awt.*;
 
+//adds menu panel to GUI
 public class AddMenuPanel extends JPanel {
     private SpendingTracker st;
     QuitButton quitButton;

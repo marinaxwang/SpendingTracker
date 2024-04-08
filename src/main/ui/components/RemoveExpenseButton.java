@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//remove expense button to expense an expense
 public class RemoveExpenseButton implements ActionListener {
     private SpendingTracker st;
     private JButton removeCategory;

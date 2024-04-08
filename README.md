@@ -32,38 +32,29 @@ and select a person who spent that amount to a spending category
 - As a user, when I start the application, I want to be given the option to load my spending categories from file.
 
 ## Phase 4: Task 2
-Mon Apr 08 04:27:14 PDT 2024
+Mon Apr 08 05:25:03 PDT 2024
 
-$100 removed successfully from shopping
+$120 added to grocery
 
-Mon Apr 08 04:27:26 PDT 2024
+Mon Apr 08 05:25:12 PDT 2024
 
-New Expense Added!
+$45 added to gas
 
-Mon Apr 08 04:27:26 PDT 2024
+Mon Apr 08 05:25:13 PDT 2024
 
-$55 removed successfully from gas
+expense removed!
 
-Mon Apr 08 04:27:55 PDT 2024
+Mon Apr 08 05:25:24 PDT 2024
 
-New Expense Added!
+$12 added to uber
+Z
+Mon Apr 08 05:25:26 PDT 2024
 
-Mon Apr 08 04:27:55 PDT 2024
+expense removed!
 
-$30 removed successfully from phone plan
+Mon Apr 08 05:25:26 PDT 2024
 
-Mon Apr 08 04:27:58 PDT 2024
-
-New Expense Added!
-
-Mon Apr 08 04:27:59 PDT 2024
-
-New Expense Added!
-
-Mon Apr 08 04:28:26 PDT 2024
-
-New Expense Added!
-
+expense removed!
 
 
 ## Phase 4: Task 3

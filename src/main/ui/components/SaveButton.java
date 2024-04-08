@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//save button to store data
 public class SaveButton  implements ActionListener {
     private SpendingTracker st;
     private JButton quit;
