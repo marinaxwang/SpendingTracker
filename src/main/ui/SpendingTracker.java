@@ -1,8 +1,6 @@
 package ui;
 
 import model.Category;
-import model.Event;
-import model.EventLog;
 import model.Expense;
 import model.ListOfCategories;
 import persistence.JsonReader;
@@ -14,6 +12,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import model.Event;
+import model.EventLog;
+
 
 // Spending tracker application
 public class SpendingTracker extends JFrame {
@@ -39,10 +40,12 @@ public class SpendingTracker extends JFrame {
 
     }
 
+    //EFFECTS: sets expense panel
     public void setExpensePanel(AddExpensePanel p) {
         expensePanel = p;
     }
 
+    //EFFECTS: sets menu panel
     public void setMenuPanel(AddMenuPanel p) {
         menuPanel = p;
     }
@@ -74,13 +77,21 @@ public class SpendingTracker extends JFrame {
         Category c = new Category(name, budget);
         //categories.add(c);
         loc.addCategory(c);
+        //loc.addExpenseLogAdd();
         System.out.print(name + " is added to your list!\n");
 
     }
 
     // EFFECTS: removes a spending category from list of categories
+    public void addExpenseLogAdd(String expenseName, String amountName) {
+        loc.addExpenseLogAdd(expenseName,amountName);
+    }
+
+    // EFFECTS: removes a spending category from list of categories
     public void removeCategory(int index) {
-        //categories.remove(index);
+        if (index < categories.size()) {
+            categories.remove(index);
+        }
         loc.removeCategory(index);
     }
 
@@ -210,14 +221,6 @@ public class SpendingTracker extends JFrame {
         for (Event next : EventLog.getInstance()) {
             System.out.println("\n" + next.toString());
         }
-    }
-
-    public void addExpenseLog(String expenseName, String amountName) {
-        loc.addExpenseLog(expenseName, amountName);
-    }
-
-    public void addExpenseLogAdd() {
-        loc.addExpenseLogAdd();
     }
 
 }

@@ -2,7 +2,8 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
-//TODO
+
+//runs the SpendingTrackerGUI
 public class SpendingTrackerGUI extends JFrame {
 
     private SpendingTracker st;

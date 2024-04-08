@@ -32,7 +32,11 @@ public class ListOfCategories implements Writable {
     // EFFECTS: adds category to this workroom
     public void addCategory(Category c) {
         category.add(c);
-        EventLog.getInstance().logEvent(new Event("New Expense Added!"));
+        //EventLog.getInstance().logEvent(new Event("New Expense Added!"));
+    }
+
+    public void addExpenseLogAdd(String expenseName, String amountName) {
+        EventLog.getInstance().logEvent(new Event("$" + amountName + " added to " + expenseName));
     }
 
     // MODIFIES: this
@@ -41,17 +45,8 @@ public class ListOfCategories implements Writable {
         if (index < category.size()) {
             category.remove(index);
         }
-        //EventLog.getInstance().logEvent(new Event("Expense Removed!"));
+        EventLog.getInstance().logEvent(new Event("expense removed!"));
     }
-
-    public void addExpenseLog(String expense, String amount) {
-        EventLog.getInstance().logEvent(new Event("$" + amount + " removed successfully from " + expense));
-    }
-
-    public void addExpenseLogAdd() {
-        EventLog.getInstance().logEvent(new Event("New Expense Added!"));
-    }
-
 
     // EFFECTS: returns an unmodifiable list of expenses in this category
     public List<Category> getCategories() {

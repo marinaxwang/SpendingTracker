@@ -46,14 +46,6 @@ public class Category implements Writable {
 
     }
 
-    public void addExpenseLog() {
-        EventLog.getInstance().logEvent(new Event("New Expense: " + this.name + " added!"));
-    }
-
-    public void removeExpenseLog() {
-        EventLog.getInstance().logEvent(new Event(this.name + " removed from Expenses!"));
-    }
-
     public String getName() {
         return name;
     }

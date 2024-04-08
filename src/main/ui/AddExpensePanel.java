@@ -118,7 +118,6 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
                     index--;
                     st.removeCategory(index);
                 }
-                st.addExpenseLogAdd();
 
                 list.setSelectedIndex(index);
                 list.ensureIndexIsVisible(index);
@@ -156,11 +155,10 @@ public class AddExpensePanel extends JPanel implements ListSelectionListener {
                 index = 0;
             } else {           //add after the selected item
                 index++;
-                st.addCategory();
+                st.addExpenseLogAdd(expenseName.getText(), amountName.getText());
             }
 
             listModel.insertElementAt(expenseName.getText() + " $" + amountName.getText(), index);
-            st.addExpenseLog(expenseName.getText(), amountName.getText());
             //If we just wanted to add to the end, we'd do this:
             //listModel.addElement(employeeName.getText());
 
