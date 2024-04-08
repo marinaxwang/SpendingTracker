@@ -21,7 +21,6 @@ public class SpendingTrackerGUI extends JFrame {
 
         add(expensePanel, BorderLayout.NORTH);
         add(menuPanel, BorderLayout.SOUTH);
-
         st.setExpensePanel(expensePanel);
         st.setMenuPanel(menuPanel);
 
