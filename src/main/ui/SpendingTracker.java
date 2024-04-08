@@ -1,6 +1,8 @@
 package ui;
 
 import model.Category;
+import model.Event;
+import model.EventLog;
 import model.Expense;
 import model.ListOfCategories;
 import persistence.JsonReader;
@@ -50,6 +52,10 @@ public class SpendingTracker extends JFrame {
     //EFFECTS: quit
     public void quitAction() {
         JOptionPane popup = new JOptionPane();
+        for (Event e : EventLog.getInstance()) {
+            System.out.println(e);
+        }
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         popup.showMessageDialog(frame, new JLabel(new ImageIcon("./data/goodbye.jpg")));
         frame.dispose();
     }
@@ -66,13 +72,16 @@ public class SpendingTracker extends JFrame {
         double budget = input.nextDouble();
 
         Category c = new Category(name, budget);
-        categories.add(c);
+        //categories.add(c);
+        loc.addCategory(c);
         System.out.print(name + " is added to your list!\n");
 
     }
 
+    // EFFECTS: removes a spending category from list of categories
     public void removeCategory(int index) {
-        categories.remove(index);
+        //categories.remove(index);
+        loc.removeCategory(index);
     }
 
     // MODIFIES: this
@@ -194,6 +203,21 @@ public class SpendingTracker extends JFrame {
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
+    }
+
+    //EFFECTS: prints out contents of event log
+    public void printEventLog() {
+        for (Event next : EventLog.getInstance()) {
+            System.out.println("\n" + next.toString());
+        }
+    }
+
+    public void addExpenseLog(String expenseName, String amountName) {
+        loc.addExpenseLog(expenseName, amountName);
+    }
+
+    public void addExpenseLogAdd() {
+        loc.addExpenseLogAdd();
     }
 
 }

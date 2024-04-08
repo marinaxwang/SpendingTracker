@@ -31,4 +31,43 @@ and select a person who spent that amount to a spending category
 - As a user, I want to be able to save the changes I made to spending categories to file.
 - As a user, when I start the application, I want to be given the option to load my spending categories from file.
 
+## Phase 4: Task 2
+Mon Apr 08 04:27:14 PDT 2024
 
+$100 removed successfully from shopping
+
+Mon Apr 08 04:27:26 PDT 2024
+
+New Expense Added!
+
+Mon Apr 08 04:27:26 PDT 2024
+
+$55 removed successfully from gas
+
+Mon Apr 08 04:27:55 PDT 2024
+
+New Expense Added!
+
+Mon Apr 08 04:27:55 PDT 2024
+
+$30 removed successfully from phone plan
+
+Mon Apr 08 04:27:58 PDT 2024
+
+New Expense Added!
+
+Mon Apr 08 04:27:59 PDT 2024
+
+New Expense Added!
+
+Mon Apr 08 04:28:26 PDT 2024
+
+New Expense Added!
+
+
+
+## Phase 4: Task 3
+If I had more time to work on the project, I would refactor the structure of the model package. Instead of having
+the user directly access a list of categories, I would make an Account class that holds the list of categories.
+Each Category class would then hold a list of expenses. This refactoring process would make the structure easier to
+implement the JSON file and GUI.

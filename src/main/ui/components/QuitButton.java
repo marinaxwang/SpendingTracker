@@ -20,5 +20,6 @@ public class QuitButton implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         st.quitAction();
+        st.printEventLog();
     }
 }
