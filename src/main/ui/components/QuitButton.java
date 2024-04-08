@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 public class QuitButton implements ActionListener {
     private SpendingTracker st;
     private JButton quit;
-
     public QuitButton(SpendingTracker st, AddMenuPanel p) {
         quit = new JButton("Quit");
         quit.addActionListener(this);
