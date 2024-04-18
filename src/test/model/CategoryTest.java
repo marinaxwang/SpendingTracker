@@ -86,6 +86,5 @@ class CategoryTest {
         c.addExpenseOfTypeDouble(50);
 
         assertEquals(100, c.getAmountSpent());
-
     }
 }
