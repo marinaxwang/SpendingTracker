@@ -84,7 +84,6 @@ class CategoryTest {
         c.addExpenseOfTypeDouble(20);
         c.addExpenseOfTypeDouble(30);
         c.addExpenseOfTypeDouble(50);
-
         assertEquals(100, c.getAmountSpent());
     }
 }
